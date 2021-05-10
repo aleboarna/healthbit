@@ -1,8 +1,8 @@
-class Alarm {
+class Alert {
   DateTime dateTime;
   String category;
   String details;
 
-  Alarm(
+  Alert(
       {required this.dateTime, required this.category, required this.details});
 }

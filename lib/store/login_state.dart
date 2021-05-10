@@ -1,10 +1,10 @@
 class LoginState {
-  bool isAuthenticated;
-  bool initialBoot;
+  bool? isAuthenticated;
+  bool? initialBoot;
 
-  LoginState({required this.isAuthenticated, required this.initialBoot});
+  LoginState({this.isAuthenticated, this.initialBoot});
 
-  LoginState copy({required bool isAuthenticated, required bool initialBoot}) {
+  LoginState copy({bool? isAuthenticated, bool? initialBoot}) {
     return LoginState(
         isAuthenticated: isAuthenticated ?? this.isAuthenticated,
         initialBoot: initialBoot ?? this.initialBoot);

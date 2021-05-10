@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:healthbit/connectors/alerts_page_connector.dart';
 import 'package:healthbit/connectors/calendar_page_connector.dart';
 import 'package:healthbit/connectors/homepage_connector.dart';
+import 'package:healthbit/connectors/login_page_connector.dart';
+import 'package:healthbit/connectors/medical_file_page_connector.dart';
 import 'package:healthbit/utils/drawer_list_item.dart';
 
 class SideDrawer extends StatelessWidget {
-  final String userName;
-  const SideDrawer({required this.userName});
+  String? userName;
+  SideDrawer({required this.userName});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,8 +39,11 @@ class SideDrawer extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                         size: 80.0,
                       ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
                       Text(
-                        '${userName[0].toUpperCase()}${userName.substring(1)}',
+                        '${userName![0].toUpperCase()}${userName!.substring(1)}',
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.bold,
@@ -58,12 +64,16 @@ class SideDrawer extends StatelessWidget {
             DrawerListItem(
               title: 'Fisa medicala',
               icon: Icons.filter_frames,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, MedicalFilePageConnector.id);
+              },
             ),
             DrawerListItem(
               title: 'Alarme',
               icon: Icons.notifications,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, AlertsPageConnector.id);
+              },
             ),
             DrawerListItem(
               title: 'Calendar',
@@ -73,32 +83,29 @@ class SideDrawer extends StatelessWidget {
               },
             ),
             DrawerListItem(
-              title: 'Recomandari',
-              icon: Icons.comment,
-              onTap: () {},
-            ),
-            DrawerListItem(
               title: 'Delogare',
               icon: Icons.logout,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, LoginPageConnector.id);
+              },
             ),
           ]),
           Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
+            padding: const EdgeInsets.only(bottom: 5.0),
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: FlutterLogo(
-                    size: 50.0,
+                Text('Brought to you by',
+                    style: TextStyle(
+                        fontSize: 12.0,
+                        color: Color(0xff02235b),
+                        fontStyle: FontStyle.italic)),
+                Container(
+                  width: 120.0,
+                  height: 120.0,
+                  child: Image(
+                    image: AssetImage('assets/id_solutions.png'),
                   ),
                 ),
-                Text('Brought to you by',
-                    style: TextStyle(fontSize: 12.0, color: Color(0xff02235b))),
-                Text(
-                  'IdSolutions',
-                  style: TextStyle(fontSize: 12.0, color: Color(0xff02235b)),
-                )
               ],
             ),
           ),
