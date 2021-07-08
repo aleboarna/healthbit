@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:healthbit/utils/svg_getter.dart';
+import 'package:healthbit/web/web_home_page_connector.dart';
 
-class LoginPage extends StatefulWidget {
-  Function onLogin;
-
-  LoginPage({required this.onLogin});
-
+class WebRegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _WebRegisterPageState createState() => _WebRegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _WebRegisterPageState extends State<WebRegisterPage> {
+  bool _isDoc = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -33,7 +31,19 @@ class _LoginPageState extends State<LoginPage> {
               height: 30.0,
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 1.5,
+              width: MediaQuery.of(context).size.width / 5,
+              child: TextField(
+                onChanged: (value) {},
+                keyboardType: TextInputType.name,
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  hintText: 'Enter your name',
+                  hintStyle: TextStyle(fontSize: 14.0),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 5,
               child: TextField(
                 onChanged: (value) {},
                 keyboardType: TextInputType.emailAddress,
@@ -45,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 1.5,
+              width: MediaQuery.of(context).size.width / 5,
               child: TextField(
                 onChanged: (value) {},
                 textAlign: TextAlign.center,
@@ -57,7 +67,32 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             SizedBox(
-              height: 20.0,
+              height: 30.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Are you a doctor?',
+                  style: TextStyle(fontSize: 25.0),
+                ),
+                SizedBox(
+                  width: 30.0,
+                ),
+                Switch(
+                    value: _isDoc,
+                    onChanged: (newValue) {
+                      setState(() {
+                        if (_isDoc) {
+                          _isDoc = false;
+                        } else
+                          _isDoc = true;
+                      });
+                    }),
+              ],
+            ),
+            SizedBox(
+              height: 40.0,
             ),
             ElevatedButton(
               style: ButtonStyle(
@@ -65,10 +100,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
               onPressed: () {
                 FocusScope.of(context).unfocus();
-                widget.onLogin();
+                if (_isDoc) {
+                  Navigator.pushNamed(context, WebHomePageConnector.id);
+                }
               },
               child: const Text(
-                'Log in',
+                'Register',
               ),
             ),
           ],

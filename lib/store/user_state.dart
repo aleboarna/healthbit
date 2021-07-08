@@ -1,9 +1,10 @@
 class UserState {
-  String? userName;
-  String? userId;
-  DateTime? birthDate;
+  String userName;
+  String userId;
+  DateTime birthDate;
 
-  UserState({this.userName, this.userId, this.birthDate});
+  UserState(
+      {required this.userName, required this.userId, required this.birthDate});
 
   UserState copy({String? userName, String? userId, DateTime? birthDate}) {
     return UserState(
@@ -15,7 +16,7 @@ class UserState {
   static UserState initialState() => UserState(
       userName: "Popescu Ion",
       userId: "123456",
-      birthDate: DateTime(1990, 1, 1));
+      birthDate: DateTime(1990, 05, 17));
 
   @override
   bool operator ==(Object other) =>

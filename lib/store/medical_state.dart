@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:healthbit/models/activitiesToDo.dart';
 import 'package:healthbit/models/alert.dart';
 import 'package:healthbit/models/ecg.dart';
@@ -7,27 +8,28 @@ import 'package:healthbit/models/recommendation.dart';
 import 'package:healthbit/models/temperature.dart';
 
 class MedicalState {
-  List<Alert>? alertsList;
-  List<ActivitiesToDo>? activitiesToDo;
-  List<Pulse>? pulseList;
-  List<ECG>? ecg;
-  List<Humidity>? humidityList;
-  List<Temperature>? temperatureList;
-  List<Recommendation>? recommendations;
-  List<String>? clinicalHistory;
+  final _deepCollectionEquality = const DeepCollectionEquality.unordered();
+  List<Alert> alertsList;
+  List<ActivitiesToDo> activitiesToDo;
+  List<Pulse> pulseList;
+  List<ECG> ecg;
+  List<Humidity> humidityList;
+  List<Temperature> temperatureList;
+  List<Recommendation> recommendations;
+  List<String> clinicalHistory;
 
   MedicalState(
-      {this.alertsList,
-      this.activitiesToDo,
-      this.pulseList,
-      this.ecg,
-      this.humidityList,
-      this.temperatureList,
-      this.recommendations,
-      this.clinicalHistory});
+      {required this.alertsList,
+      required this.activitiesToDo,
+      required this.pulseList,
+      required this.ecg,
+      required this.humidityList,
+      required this.temperatureList,
+      required this.recommendations,
+      required this.clinicalHistory});
 
   MedicalState copy(
-      {List<Alert>? alarmsList,
+      {List<Alert>? alertsList,
       List<ActivitiesToDo>? activitiesToDo,
       List<Recommendation>? recommendations,
       List<Pulse>? pulseList,
@@ -36,7 +38,7 @@ class MedicalState {
       List<ECG>? ecg,
       List<String>? clinicalHistory}) {
     return MedicalState(
-        alertsList: alarmsList ?? this.alertsList,
+        alertsList: alertsList ?? this.alertsList,
         activitiesToDo: activitiesToDo ?? this.activitiesToDo,
         recommendations: recommendations ?? this.recommendations,
         pulseList: pulseList ?? this.pulseList,
@@ -47,10 +49,7 @@ class MedicalState {
   }
 
   static MedicalState initialState() => MedicalState(alertsList: [
-        Alert(
-            dateTime: DateTime.now(),
-            category: 'Pulse',
-            details: 'Pulse too high')
+        Alert(dateTime: DateTime.now(), category: 'Puls', details: '82')
       ], activitiesToDo: [
         ActivitiesToDo(
             timeToDo: DateTime.utc(2021, 5, 2), activity: 'Alearga 10 minute'),
@@ -61,55 +60,51 @@ class MedicalState {
         ActivitiesToDo(
             timeToDo: DateTime.utc(2021, 5, 21), activity: 'Alearga 15 minute'),
       ], pulseList: [
-        Pulse(
-          dateTime: DateTime.now(),
-          pulse: 75,
-        ),
-        Pulse(
-          dateTime: DateTime.now(),
-          pulse: 62,
-        ),
-        Pulse(
-          dateTime: DateTime.now(),
-          pulse: 83,
-        ),
-        Pulse(
-          dateTime: DateTime.now(),
-          pulse: 65,
-        ),
-        Pulse(
-          dateTime: DateTime.now(),
-          pulse: 80,
-        )
+        Pulse(pulse: 75, dateTime: DateTime(2021, 05, 12)),
+        Pulse(pulse: 77, dateTime: DateTime(2021, 05, 13)),
+        Pulse(pulse: 72, dateTime: DateTime(2021, 05, 14)),
+        Pulse(pulse: 73, dateTime: DateTime(2021, 05, 15)),
+        Pulse(pulse: 75, dateTime: DateTime(2021, 05, 16)),
+        Pulse(pulse: 77, dateTime: DateTime(2021, 05, 17)),
+        Pulse(pulse: 75, dateTime: DateTime(2021, 05, 18)),
+        Pulse(pulse: 73, dateTime: DateTime(2021, 05, 19)),
+        Pulse(pulse: 74, dateTime: DateTime(2021, 05, 20)),
+        Pulse(pulse: 77, dateTime: DateTime(2021, 05, 21)),
       ], ecg: [], humidityList: [
-        Humidity(dateTime: DateTime.now(), humidity: 50),
-        Humidity(dateTime: DateTime.now(), humidity: 45),
-        Humidity(dateTime: DateTime.now(), humidity: 52),
-        Humidity(dateTime: DateTime.now(), humidity: 57),
-        Humidity(dateTime: DateTime.now(), humidity: 60)
+        Humidity(dateTime: DateTime(2021, 05, 12), humidity: 54),
+        Humidity(dateTime: DateTime(2021, 05, 13), humidity: 52),
+        Humidity(dateTime: DateTime(2021, 05, 14), humidity: 49),
+        Humidity(dateTime: DateTime(2021, 05, 15), humidity: 51),
+        Humidity(dateTime: DateTime(2021, 05, 16), humidity: 53),
+        Humidity(dateTime: DateTime(2021, 05, 17), humidity: 47),
+        Humidity(dateTime: DateTime(2021, 05, 18), humidity: 52),
+        Humidity(dateTime: DateTime(2021, 05, 19), humidity: 60),
+        Humidity(dateTime: DateTime(2021, 05, 20), humidity: 52),
+        Humidity(dateTime: DateTime(2021, 05, 21), humidity: 49),
+        Humidity(dateTime: DateTime(2021, 05, 21), humidity: 52),
       ], temperatureList: [
-        Temperature(dateTime: DateTime.now(), temperature: 22),
-        Temperature(dateTime: DateTime.now(), temperature: 21),
-        Temperature(dateTime: DateTime.now(), temperature: 22),
-        Temperature(dateTime: DateTime.now(), temperature: 20),
-        Temperature(dateTime: DateTime.now(), temperature: 21)
+        Temperature(dateTime: DateTime(2021, 05, 12), temperature: 20),
+        Temperature(dateTime: DateTime(2021, 05, 13), temperature: 21),
+        Temperature(dateTime: DateTime(2021, 05, 14), temperature: 20),
+        Temperature(dateTime: DateTime(2021, 05, 15), temperature: 22),
+        Temperature(dateTime: DateTime(2021, 05, 16), temperature: 21),
+        Temperature(dateTime: DateTime(2021, 05, 17), temperature: 22),
+        Temperature(dateTime: DateTime(2021, 05, 18), temperature: 22),
+        Temperature(dateTime: DateTime(2021, 05, 19), temperature: 22),
+        Temperature(dateTime: DateTime(2021, 05, 20), temperature: 21),
+        Temperature(dateTime: DateTime(2021, 05, 21), temperature: 22),
       ], recommendations: [
         Recommendation(
-            dateTime: DateTime.now(), category: 'asd', details: 'asd'),
+            dateTime: DateTime.now(),
+            category: 'Regim igieno-dietetic',
+            details: 'Regim hiposodat'),
         Recommendation(
-            dateTime: DateTime.now(), category: 'asd', details: 'asd'),
-        Recommendation(
-            dateTime: DateTime.now(), category: 'asd', details: 'asd'),
-        Recommendation(
-            dateTime: DateTime.now(), category: 'asd', details: 'asd'),
-        Recommendation(
-            dateTime: DateTime.now(), category: 'asd', details: 'asd'),
-        Recommendation(
-            dateTime: DateTime.now(), category: 'asd', details: 'asd'),
+            dateTime: DateTime.now(),
+            category: 'Regim igieno-dietetic',
+            details: 'Activitate fizica zilnica'),
       ], clinicalHistory: [
-        'Essential arterial hypertension',
-        'Essential arterial hypertension',
-        'Essential arterial hypertension',
+        'Hipertensiune arteriala esentiala gr. II',
+        'Obezitate gr. I',
       ]);
 
   @override
@@ -119,7 +114,7 @@ class MedicalState {
           runtimeType == other.runtimeType &&
           alertsList == other.alertsList &&
           activitiesToDo == other.activitiesToDo &&
-          pulseList == other.pulseList &&
+          _deepCollectionEquality.equals(pulseList, other.pulseList) &&
           ecg == other.ecg &&
           humidityList == other.humidityList &&
           temperatureList == other.temperatureList &&

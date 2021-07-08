@@ -132,19 +132,53 @@ class MedicalFilePage extends StatelessWidget {
                           child: Column(
                             children: [
                               LineChartMedical(
-                                  measuredIndex: 'Puls', listOfValues: pulse),
+                                  measuredIndex: 'Puls',
+                                  listOfValues: [
+                                    pulse![0],
+                                    pulse![1],
+                                    pulse![2],
+                                    pulse![3],
+                                    pulse![4],
+                                    pulse![5],
+                                    pulse![6],
+                                    pulse![7],
+                                    pulse![8],
+                                    pulse![9],
+                                  ]),
                               SizedBox(
                                 height: 15.0,
                               ),
                               LineChartMedical(
                                   measuredIndex: 'Temperatura',
-                                  listOfValues: temperature),
+                                  listOfValues: [
+                                    temperature![0],
+                                    temperature![1],
+                                    temperature![2],
+                                    temperature![3],
+                                    temperature![4],
+                                    temperature![5],
+                                    temperature![6],
+                                    temperature![7],
+                                    temperature![8],
+                                    temperature![9],
+                                  ]),
                               SizedBox(
                                 height: 15.0,
                               ),
                               LineChartMedical(
                                   measuredIndex: 'Umiditate',
-                                  listOfValues: humidity),
+                                  listOfValues: [
+                                    humidity![0],
+                                    humidity![1],
+                                    humidity![2],
+                                    humidity![3],
+                                    humidity![4],
+                                    humidity![5],
+                                    humidity![6],
+                                    humidity![7],
+                                    humidity![8],
+                                    humidity![9],
+                                  ]),
                             ],
                           )),
                     ),

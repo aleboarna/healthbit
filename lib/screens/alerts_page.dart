@@ -14,6 +14,7 @@ class AlertsPage extends StatelessWidget {
         alertCategory: item.category,
         alertDetails: item.details,
         alertTime: item.dateTime,
+        color: Color(0xff02235b),
       ));
     }
     return result;

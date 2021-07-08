@@ -70,7 +70,7 @@ class LineChartMedicalState extends State<LineChartMedical> {
       } else if (item is Humidity) {
         varY = item.humidity;
       } else if (item is Temperature) {
-        varY = item.temperature;
+        varY = item.temperature.floor();
       }
       result.add(FlSpot(varX.toDouble(), varY.toDouble()));
       varX++;
@@ -181,11 +181,11 @@ class LineChartMedicalState extends State<LineChartMedical> {
             getTitles: (value) {
               switch (value.toInt()) {
                 case 2:
-                  return 'MAR';
-                case 7:
-                  return 'APR';
-                case 12:
                   return 'MAI';
+                case 7:
+                  return '';
+                case 12:
+                  return 'IUN';
               }
               return '';
             },
@@ -274,7 +274,7 @@ class LineChartMedicalState extends State<LineChartMedical> {
         ),
       ),
       minX: 0,
-      maxX: 14,
+      maxX: 15,
       maxY: maxY(widget.measuredIndex!).toDouble(),
       minY: minY(widget.measuredIndex!).toDouble(),
       lineBarsData: linesBarData1(),

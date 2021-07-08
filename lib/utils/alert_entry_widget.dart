@@ -4,8 +4,12 @@ class AlertEntryWidget extends StatelessWidget {
   String? alertCategory;
   String? alertDetails;
   DateTime? alertTime;
-
-  AlertEntryWidget({this.alertCategory, this.alertDetails, this.alertTime});
+  Color color;
+  AlertEntryWidget(
+      {this.alertCategory,
+      this.alertDetails,
+      this.alertTime,
+      required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +18,18 @@ class AlertEntryWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(7.0),
         decoration: BoxDecoration(
-            border: Border.all(color: Color(0xff02235b)),
+            border: Border.all(color: color),
             borderRadius: BorderRadius.circular(15.0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               'Alerta! ' + alertCategory! + '\n' + alertDetails!,
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontSize: 20.0, color: color),
             ),
             Text(
               alertTime.toString().substring(0, 19),
-              style: TextStyle(fontSize: 10.0),
+              style: TextStyle(fontSize: 10.0, color: color),
             )
           ],
         ),
